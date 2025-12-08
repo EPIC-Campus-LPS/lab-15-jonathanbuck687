@@ -1,10 +1,10 @@
 package SeatPackage;
-
+import java.io.IOException;
 public class Main {  
-    public static void main(String[] args) {  
+    public static void main(String[] args)  throws IOException{  
         System.out.println("Create new venue with 20 rows of 50 columns with default price of 50.00.");  
         Venue venue = new Venue(20, 50, 50.0);  
-  
+        
         System.out.println("Set first 4 rows to premium with price 100.00.");  
         int row = 0;  
         while(row < 5){  
@@ -25,7 +25,6 @@ public class Main {
             venue.setGA(row, 25.00);  
             row++;  
         }  
-  
         if(venue.importTickets("sold_150.csv")){  
             System.out.println("\nTotal Revenue: " + venue.totalRevenue()); // 8650.0  
             System.out.println("Total Revenue, Column 27: " + venue.totalRevenue(27)); // 225.0  

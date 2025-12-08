@@ -28,16 +28,16 @@ public class Venue {
 	{
 		if (Seat[row][col].getSold() == true)
 		{
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 	public void setPremium(int row, double price)
 	{
 		for (int i = 0; i < Seat[row].length; i++)
 		{
 			Seat[row][i].setType("P");
-			Seat[row][i].setPrice(Seat[row][i].getPrice() + price);
+			Seat[row][i].setPrice(price);
 		}
 	}
 	public void setPremium(int row, int colStart, int colEnd, double price)
@@ -45,7 +45,7 @@ public class Venue {
 		for (int i = colStart; i < colEnd; i++)
 		{
 			Seat[row][i].setType("P");
-			Seat[row][i].setPrice(Seat[row][i].getPrice() + price);
+			Seat[row][i].setPrice(price);
 		}
 	}
 	public void setGA(int row, double price)
@@ -53,7 +53,7 @@ public class Venue {
 		for (int i = 0; i < Seat[row].length; i++)
 		{
 			Seat[row][i].setType("G");
-			Seat[row][i].setPrice(Seat[row][i].getPrice() + price);
+			Seat[row][i].setPrice(price);
 		}
 	}
 	public boolean importTickets(String filename) throws IOException
@@ -69,6 +69,7 @@ public class Venue {
 			i = Integer.parseInt(s[0]);
 			j = Integer.parseInt(s[1]);
 			Seat[i][j].setSold(true);
+			System.out.println("A");
 		}
 		return true;
 		
@@ -201,12 +202,12 @@ public class Venue {
 		}
 		return false;
 	}
-	public boolean allPremium(int row)
+	public boolean allPremium(int col)
 	{
 		boolean bean = true;
-		for (int j = 0; j < Seat[row].length; j++)
+		for (int j = 0; j < Seat.length; j++)
 		{
-			if (Seat[row][j].getType().equals("G"))
+			if (Seat[j][col].getType().equals("P"))
 			{
 				bean = bean;
 			}
