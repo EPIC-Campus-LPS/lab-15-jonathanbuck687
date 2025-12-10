@@ -65,11 +65,13 @@ public class Venue {
 		String[] s = new String[2];
 		while (sc.hasNextLine())
 		{
+			//System.out.println(sc.nextLine());
 			s = sc.nextLine().split(",");
 			i = Integer.parseInt(s[0]);
+			System.out.print(i);
 			j = Integer.parseInt(s[1]);
+			System.out.println(" " + j);
 			Seat[i][j].setSold(true);
-			System.out.println("A");
 		}
 		return true;
 		
