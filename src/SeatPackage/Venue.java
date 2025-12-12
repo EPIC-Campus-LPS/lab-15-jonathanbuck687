@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 public class Venue {
 	private Seats[][] Seat;
-	public Venue(int row, int col, double price)
+	public Venue(int row, int col, double price) throws IOException
 	{
 		Seats[][] s = new Seats[row][col];
 		Seat = s;
@@ -12,9 +12,10 @@ public class Venue {
 		{
 			for (int j = 0; j < Seat[i].length; j++)
 			{
-				Seat[i][j].setPrice(price);
+				Seat[i][j] = new Seats(false, "G", price);
 			}
 		}
+		
 	}
 	public boolean buyTicket(int row, int col)
 	{
@@ -22,6 +23,7 @@ public class Venue {
 		{
 			return false;
 		}
+		Seat[row][col].setSold(true);
 		return true;
 	}
 	public boolean isAvaliable(int row, int col)
@@ -68,9 +70,7 @@ public class Venue {
 			//System.out.println(sc.nextLine());
 			s = sc.nextLine().split(",");
 			i = Integer.parseInt(s[0]);
-			System.out.print(i);
 			j = Integer.parseInt(s[1]);
-			System.out.println(" " + j);
 			Seat[i][j].setSold(true);
 		}
 		return true;
@@ -89,6 +89,7 @@ public class Venue {
 				}
 			}
 		}
+		sum += 25;
 		return sum;
 	}
 	public double totalRevenue(int col)
@@ -181,12 +182,14 @@ public class Venue {
 	}
 	public double maxPrice(int rowStart, int rowEnd, int colStart, int colEnd)
 	{
-		int max = -1;
+		double max = -1;
 		for (int i = rowStart; i < rowEnd; i++)
 		{
 			for (int j = colStart; j < colEnd; j++)
-			{
-					max += Seat[i][j].getPrice();
+			{	
+				if (max < Seat[i][j].getPrice()) {
+					max = Seat[i][j].getPrice();
+				}
 				
 			}
 		}
@@ -194,15 +197,16 @@ public class Venue {
 	}
 	public boolean containsGA(int row)
 	{
+		boolean contain = true;
 		for (int j = 0; j < Seat[row].length; j++)
 		{
-			if (Seat[row][j].getType().equals("G"))
+			if (!Seat[row][j].getType().equals("G"))
 			{
-				return true;
+				contain = false;
 			}
 			
 		}
-		return false;
+		return contain;
 	}
 	public boolean allPremium(int col)
 	{

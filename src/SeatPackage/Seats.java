@@ -1,30 +1,30 @@
 package SeatPackage;
 
 public class Seats {
-	private static boolean sold;
-	private static String type;
-	private static double price;
-	public static boolean getSold()
+	private boolean sold;
+	private String type;
+	private double price;
+	public boolean getSold()
 	{
 		return sold;
 	}
-	public static String getType()
+	public String getType()
 	{
 		return type;
 	}
-	public static double getPrice()
+	public double getPrice()
 	{
 		return price;
 	}
-	public  static void setSold(boolean b)
+	public void setSold(boolean b)
 	{
 		sold = b;
 	}
-	public static void setType(String t)
+	public void setType(String t)
 	{
 		type = t;
 	}
-	public static void setPrice(double p)
+	public void setPrice(double p)
 	{
 		price = p;
 	}
